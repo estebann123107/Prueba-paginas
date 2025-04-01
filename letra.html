@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letra de la Canción</title>
+</head>
+<body>
+    <h1 id="titulo"></h1>
+    <p id="letra"></p>
+
+    <script>
+        // Objeto con las letras de las canciones
+        const letras = {
+            "cancion1": {
+                titulo: "Canción 1",
+                letra: "Esta es la letra de la Canción 1..."
+            },
+            "cancion2": {
+                titulo: "Canción 2",
+                letra: "Esta es la letra de la Canción 2..."
+            },
+            "cancion3": {
+                titulo: "Canción 3",
+                letra: "Esta es la letra de la Canción 3..."
+            }
+        };
+
+        // Función para obtener el parámetro de la URL
+        function obtenerParametro(nombre) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(nombre);
+        }
+
+        // Obtener el nombre de la canción desde la URL
+        const songKey = obtenerParametro("song");
+
+        // Verificar si existe en el objeto y actualizar la página
+        if (letras[songKey]) {
+            document.getElementById("titulo").innerText = letras[songKey].titulo;
+            document.getElementById("letra").innerText = letras[songKey].letra;
+        } else {
+            document.getElementById("titulo").innerText = "Canción no encontrada";
+            document.getElementById("letra").innerText = "No hay letra disponible para esta canción.";
+        }
+    </script>
+</body>
+</html>
